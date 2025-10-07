@@ -232,7 +232,7 @@ body {
     font-weight: 600;
     
     &:hover:not(:disabled) {
-      background: darken($primary-color, 10%);
+      background: color.adjust($primary-color, $lightness: -10%);
       transform: translateY(-1px);
     }
   }
@@ -394,7 +394,7 @@ body {
     color: $white;
     
     &:hover:not(:disabled) {
-      background: darken($success-color, 10%);
+      background: color.adjust($success-color, $lightness: -10%);
     }
   }
   
@@ -403,7 +403,7 @@ body {
     color: $white;
     
     &:hover:not(:disabled) {
-      background: darken($error-color, 10%);
+      background: color.adjust($error-color, $lightness: -10%);
     }
   }
 }
