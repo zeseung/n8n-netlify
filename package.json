@@ -4,8 +4,7 @@
   "description": "로컬 n8n 웹훅 경로를 고정할 수 있는 웹 애플리케이션",
   "main": "index.js",
   "scripts": {
-    "build": "npm run build:functions && npm run build:site",
-    "build:functions": "netlify-lambda build netlify/functions --out netlify/functions-build",
+    "build": "npm run build:site",
     "build:site": "parcel build src/index.html --dist-dir dist",
     "dev": "concurrently \"npm run dev:site\" \"npm run dev:functions\"",
     "dev:site": "parcel src/index.html --dist-dir dist --port 3000",
