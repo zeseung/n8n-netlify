@@ -1,8 +1,11 @@
 // Variables
 $primary-color: #667eea;
+$primary-color-dark: #5a6fd8;
 $secondary-color: #764ba2;
 $success-color: #10b981;
+$success-color-dark: #059669;
 $error-color: #ef4444;
+$error-color-dark: #dc2626;
 $warning-color: #f59e0b;
 $text-color: #1f2937;
 $text-light: #6b7280;
@@ -232,7 +235,7 @@ body {
     font-weight: 600;
     
     &:hover:not(:disabled) {
-      background: color.adjust($primary-color, $lightness: -10%);
+      background: $primary-color-dark;
       transform: translateY(-1px);
     }
   }
@@ -394,7 +397,7 @@ body {
     color: $white;
     
     &:hover:not(:disabled) {
-      background: color.adjust($success-color, $lightness: -10%);
+      background: $success-color-dark;
     }
   }
   
@@ -403,7 +406,7 @@ body {
     color: $white;
     
     &:hover:not(:disabled) {
-      background: color.adjust($error-color, $lightness: -10%);
+      background: $error-color-dark;
     }
   }
 }

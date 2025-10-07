@@ -18,7 +18,6 @@
   "devDependencies": {
     "@parcel/transformer-sass": "^2.9.0",
     "concurrently": "^8.2.0",
-    "netlify-lambda": "^2.0.15",
     "parcel": "^2.9.0",
     "sass": "^1.69.0"
   },
