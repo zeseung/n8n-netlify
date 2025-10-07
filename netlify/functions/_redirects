@@ -1,0 +1,6 @@
+# API 라우팅
+/api/webhooks/* /.netlify/functions/webhooks/:splat 200
+/api/webhook/* /.netlify/functions/webhook/:splat 200
+
+# SPA 라우팅
+/* /index.html 200

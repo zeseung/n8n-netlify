@@ -1,0 +1,550 @@
+// Variables
+$primary-color: #667eea;
+$secondary-color: #764ba2;
+$success-color: #10b981;
+$error-color: #ef4444;
+$warning-color: #f59e0b;
+$text-color: #1f2937;
+$text-light: #6b7280;
+$bg-color: #f9fafb;
+$white: #ffffff;
+$border-color: #e5e7eb;
+$shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin button-base {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@mixin card {
+  background: $white;
+  border-radius: 0.75rem;
+  box-shadow: $shadow;
+  padding: 1.5rem;
+  border: 1px solid $border-color;
+}
+
+// Reset and base styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: $text-color;
+  background: $bg-color;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+// App layout
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem 0;
+}
+
+// Header
+.header {
+  background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+  color: $white;
+  padding: 3rem 0;
+  text-align: center;
+  
+  .header-content {
+    .logo {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .subtitle {
+      font-size: 1.125rem;
+      opacity: 0.9;
+      font-weight: 300;
+    }
+  }
+}
+
+// Offline banner
+.offline-banner {
+  background: $warning-color;
+  color: $white;
+  padding: 1rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+// Webhook Manager
+.webhook-manager {
+  .manager-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    
+    h2 {
+      font-size: 1.875rem;
+      font-weight: 600;
+      color: $text-color;
+    }
+  }
+}
+
+// Error banner
+.error-banner {
+  background: $error-color;
+  color: $white;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  .close-btn {
+    background: none;
+    border: none;
+    color: $white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+    @include flex-center;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+  }
+}
+
+// Manager content
+.manager-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+// Webhook Form
+.webhook-form {
+  @include card;
+  
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: $text-color;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .form-label {
+    font-weight: 500;
+    color: $text-color;
+    font-size: 0.875rem;
+  }
+  
+  .form-input,
+  .form-textarea {
+    padding: 0.75rem;
+    border: 1px solid $border-color;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    transition: border-color 0.2s ease;
+    
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    &.error {
+      border-color: $error-color;
+    }
+    
+    &:disabled {
+      background: $bg-color;
+      cursor: not-allowed;
+    }
+  }
+  
+  .form-textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  .error-message {
+    color: $error-color;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+  
+  .submit-btn {
+    @include button-base;
+    background: $primary-color;
+    color: $white;
+    font-weight: 600;
+    
+    &:hover:not(:disabled) {
+      background: darken($primary-color, 10%);
+      transform: translateY(-1px);
+    }
+  }
+}
+
+// Webhook List
+.webhook-list {
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: $text-color;
+  }
+  
+  .empty-state {
+    @include card;
+    text-align: center;
+    padding: 3rem 2rem;
+    
+    .empty-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      color: $text-light;
+      margin-bottom: 0.5rem;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  .webhook-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+// Webhook Item
+.webhook-item {
+  @include card;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  .webhook-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    
+    .webhook-name {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: $text-color;
+      margin: 0;
+    }
+    
+    .webhook-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+  }
+  
+  .webhook-description {
+    color: $text-light;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+  
+  .webhook-urls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .url-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    
+    .url-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: $text-light;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .url-input-group {
+      display: flex;
+      gap: 0.5rem;
+      
+      .url-input {
+        flex: 1;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid $border-color;
+        border-radius: 0.375rem;
+        font-size: 0.875rem;
+        background: $bg-color;
+        color: $text-color;
+        
+        &.local-url {
+          font-family: 'Courier New', monospace;
+          font-size: 0.75rem;
+        }
+      }
+      
+      .copy-btn {
+        padding: 0.5rem;
+        border: 1px solid $border-color;
+        background: $white;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        @include flex-center;
+        min-width: 2.5rem;
+        
+        &:hover {
+          background: $primary-color;
+          color: $white;
+          border-color: $primary-color;
+        }
+      }
+    }
+  }
+  
+  .webhook-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid $border-color;
+    font-size: 0.75rem;
+    color: $text-light;
+    
+    .webhook-id {
+      font-family: 'Courier New', monospace;
+    }
+  }
+}
+
+// Action buttons
+.action-btn {
+  @include button-base;
+  font-size: 0.75rem;
+  padding: 0.5rem 1rem;
+  
+  &.test-btn {
+    background: $success-color;
+    color: $white;
+    
+    &:hover:not(:disabled) {
+      background: darken($success-color, 10%);
+    }
+  }
+  
+  &.delete-btn {
+    background: $error-color;
+    color: $white;
+    
+    &:hover:not(:disabled) {
+      background: darken($error-color, 10%);
+    }
+  }
+}
+
+// Status Indicator
+.status-indicator {
+  .loading-spinner {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: $primary-color;
+    
+    .spinner {
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid $border-color;
+      border-top: 2px solid $primary-color;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+  }
+  
+  .status-dot {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: $success-color;
+    font-size: 0.875rem;
+    font-weight: 500;
+    
+    &::before {
+      content: '';
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background: $success-color;
+    }
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Footer
+.footer {
+  background: $text-color;
+  color: $white;
+  padding: 3rem 0 2rem;
+  margin-top: 4rem;
+  
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+    
+    .footer-section {
+      h4 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+      
+      p {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+        margin-bottom: 0.5rem;
+      }
+      
+      ul {
+        list-style: none;
+        
+        li {
+          color: rgba(255, 255, 255, 0.8);
+          margin-bottom: 0.5rem;
+          font-size: 0.875rem;
+          
+          &::before {
+            content: '•';
+            color: $primary-color;
+            margin-right: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    
+    p {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.875rem;
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .header {
+    padding: 2rem 0;
+    
+    .header-content {
+      .logo {
+        font-size: 2rem;
+      }
+      
+      .subtitle {
+        font-size: 1rem;
+      }
+    }
+  }
+  
+  .webhook-manager {
+    .manager-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  }
+  
+  .webhook-item {
+    .webhook-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      
+      .webhook-actions {
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
+    
+    .webhook-meta {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+}

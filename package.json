@@ -1,0 +1,30 @@
+{
+  "name": "n8n-webhook-fixer",
+  "version": "1.0.0",
+  "description": "로컬 n8n 웹훅 경로를 고정할 수 있는 웹 애플리케이션",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build:functions && npm run build:site",
+    "build:functions": "netlify-lambda build netlify/functions",
+    "build:site": "parcel build src/index.html --dist-dir dist",
+    "dev": "concurrently \"npm run dev:site\" \"npm run dev:functions\"",
+    "dev:site": "parcel src/index.html --dist-dir dist --port 3000",
+    "dev:functions": "netlify-lambda serve netlify/functions --port 9000",
+    "start": "npm run dev"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.9.0",
+    "concurrently": "^8.2.0",
+    "netlify-lambda": "^2.0.15",
+    "parcel": "^2.9.0",
+    "sass": "^1.69.0"
+  },
+  "keywords": ["n8n", "webhook", "netlify", "proxy"],
+  "author": "Your Name",
+  "license": "MIT"
+}
