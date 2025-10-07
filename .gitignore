@@ -8,6 +8,7 @@ yarn-error.log*
 dist/
 .netlify/
 .netlify/functions/
+netlify/functions-build/
 
 # Environment variables
 .env

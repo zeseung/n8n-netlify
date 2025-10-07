@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run build:functions && npm run build:site",
-    "build:functions": "netlify-lambda build netlify/functions",
+    "build:functions": "netlify-lambda build netlify/functions --out netlify/functions-build",
     "build:site": "parcel build src/index.html --dist-dir dist",
     "dev": "concurrently \"npm run dev:site\" \"npm run dev:functions\"",
     "dev:site": "parcel src/index.html --dist-dir dist --port 3000",
