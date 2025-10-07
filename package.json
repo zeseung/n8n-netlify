@@ -2,7 +2,6 @@
   "name": "n8n-webhook-fixer",
   "version": "1.0.0",
   "description": "로컬 n8n 웹훅 경로를 고정할 수 있는 웹 애플리케이션",
-  "main": "src/index.jsx",
   "scripts": {
     "build": "npm run build:site",
     "build:site": "parcel build src/index.html --dist-dir dist",
